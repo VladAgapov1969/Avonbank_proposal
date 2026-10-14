@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R&D Proposal — Adaptive MAS for Tenure-Constrained Mining Finance</title>
+<style>
+  :root{
+    --ink:#0f1b2d;
+    --muted:#5a6b82;
+    --accent:#0b6b5f;
+    --accent-soft:#e6f2f0;
+    --rule:#d8e0ea;
+    --bg:#ffffff;
+    --panel:#f7fafc;
+    --gold:#a8802a;
+    --gold-soft:#fbf5e6;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:#eef2f6;
+    color:var(--ink);
+    font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+    font-size:15px;
+    line-height:1.65;
+  }
+  .page{
+    max-width:920px;
+    margin:32px auto;
+    background:var(--bg);
+    border:1px solid var(--rule);
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 18px 50px rgba(15,27,45,.10);
+  }
+
+  /* ---------- COVER ---------- */
+  .cover{
+    position:relative;
+    padding:56px 56px 44px;
+    background:
+      radial-gradient(1200px 400px at 100% 0%, rgba(11,107,95,.10), transparent 60%),
+      linear-gradient(180deg,#0f1b2d 0%, #14263d 100%);
+    color:#fff;
+  }
+  .cover::after{
+    content:"";
+    position:absolute;left:0;right:0;bottom:0;height:4px;
+    background:linear-gradient(90deg,var(--accent),var(--gold));
+  }
+  .eyebrow{
+    font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:#8fd6cc;font-weight:700;margin:0 0 18px;
+  }
+  .cover h1{
+    margin:0 0 8px;font-size:31px;line-height:1.25;font-weight:700;letter-spacing:-.01em;
+  }
+  .cover h2{
+    margin:0 0 26px;font-size:17px;font-weight:400;color:#b9c8da;line-height:1.5;
+  }
+  .meta{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px 34px;font-size:13.5px;
+    border-top:1px solid rgba(255,255,255,.18);padding-top:22px;
+  }
+  .meta div span{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7f93ab;margin-bottom:2px;}
+  .meta div strong{font-weight:600;color:#fff;}
+
+  /* ---------- BODY ---------- */
+  .content{padding:48px 56px 56px;}
+  h3{
+    font-size:19px;margin:44px 0 14px;padding-bottom:9px;
+    border-bottom:2px solid var(--accent-soft);
+    color:var(--ink);letter-spacing:-.01em;
+  }
+  h3:first-child{margin-top:0;}
+  h3 .num{
+    display:inline-block;min-width:30px;color:var(--accent);font-weight:800;
+  }
+  h4{font-size:15.5px;margin:26px 0 8px;color:var(--accent);font-weight:700;}
+  p{margin:0 0 14px;}
+  ul,ol{margin:0 0 16px;padding-left:22px;}
+  li{margin-bottom:7px;}
+  strong{font-weight:650;}
+  em{color:var(--muted);}
+
+  blockquote{
+    margin:18px 0;padding:16px 22px;
+    background:var(--accent-soft);
+    border-left:4px solid var(--accent);
+    border-radius:0 6px 6px 0;
+    font-style:italic;color:#123f3a;
+  }
+
+  /* formula blocks */
+  .formula{
+    margin:16px 0;padding:16px 20px;
+    background:var(--panel);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--gold);
+    border-radius:0 6px 6px 0;
+    font-family:"Cambria Math","Latin Modern Math",Georgia,serif;
+    font-size:16px;text-align:center;color:#1b2b40;
+    overflow-x:auto;
+  }
+  .formula .lbl{
+    display:block;font-family:"Segoe UI",sans-serif;font-size:11px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+    margin-bottom:10px;font-weight:700;
+  }
+  .formula sub,.formula sup{font-size:75%;}
+
+  /* tables */
+  table{
+    width:100%;border-collapse:collapse;margin:18px 0;font-size:13.8px;
+  }
+  th{
+    background:#0f1b2d;color:#fff;text-align:left;padding:11px 14px;
+    font-weight:600;font-size:12.5px;letter-spacing:.04em;
+  }
+  td{padding:11px 14px;border-bottom:1px solid var(--rule);vertical-align:top;}
+  tbody tr:nth-child(even){background:var(--panel);}
+
+  /* callouts */
+  .callout{
+    margin:20px 0;padding:18px 22px;
+    background:var(--gold-soft);
+    border:1px solid #ecd9a8;border-radius:8px;
+  }
+  .callout strong{color:var(--gold);}
+
+  /* pricing cards */
+  .cards{display:grid;grid-template-columns:1fr;gap:16px;margin:22px 0;}
+  .card{
+    border:1px solid var(--rule);border-radius:9px;overflow:hidden;background:#fff;
+  }
+  .card-head{
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+    padding:14px 20px;background:var(--panel);border-bottom:1px solid var(--rule);
+  }
+  .card-head .t{font-weight:700;font-size:15px;color:var(--ink);}
+  .card-head .p{font-weight:800;font-size:18px;color:var(--accent);white-space:nowrap;}
+  .card-body{padding:16px 20px;font-size:14px;}
+  .card-body ul{margin:0;padding-left:20px;}
+  .card.featured{border-color:var(--accent);box-shadow:0 6px 20px rgba(11,107,95,.12);}
+  .card.featured .card-head{background:var(--accent-soft);}
+
+  .terms{
+    margin:20px 0;padding:16px 20px;background:#0f1b2d;color:#dbe6f2;
+    border-radius:8px;font-size:13.5px;
+  }
+  .terms strong{color:#8fd6cc;}
+
+  /* contact / signature */
+  .sig{
+    margin-top:44px;padding:24px 26px;border-top:2px solid var(--accent-soft);
+    display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  }
+  .sig .who strong{display:block;font-size:16px;}
+  .sig .who span{color:var(--muted);font-size:13.5px;}
+  .sig .links{font-size:13.5px;line-height:1.9;text-align:right;}
+  .sig a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(11,107,95,.3);}
+  .sig a:hover{border-bottom-color:var(--accent);}
+
+  .note{
+    margin-top:34px;padding-top:18px;border-top:1px solid var(--rule);
+    font-size:12px;color:var(--muted);text-align:center;
+  }
+
+  @media print{
+    body{background:#fff;font-size:11.5pt;}
+    .page{margin:0;border:none;border-radius:0;box-shadow:none;max-width:none;}
+    .cover{padding:40px;}
+    .content{padding:34px 40px;}
+    h3{page-break-after:avoid;}
+    .card,.callout,table,blockquote{page-break-inside:avoid;}
+  }
+  @media (max-width:640px){
+    .cover{padding:36px 24px 30px;}
+    .content{padding:32px 24px 40px;}
+    .cover h1{font-size:24px;}
+    .meta{grid-template-columns:1fr;}
+    .sig .links{text-align:left;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ COVER ============ -->
+  <header class="cover">
+    <p class="eyebrow">Research &amp; Development Proposal</p>
+    <h1>Adaptive Multi-Agent Stochastic Modeling Framework</h1>
+    <h2>Resolving Tenure-Constrained Financing Risk in Long-Life Mining Assets</h2>
+    <div class="meta">
+      <div><span>Prepared for</span><strong>Daniel Alexander van Skye, DBA</strong>Quant Hedge Fund Manager — Metals &amp; Mining</div>
+      <div><span>Prepared by</span><strong>Vladislav Agapov, PhD</strong>Applied Mathematics · Senior R&amp;D Architect</div>
+      <div><span>Reference asset</span><strong>WIM Resource / Avonbank</strong>Resources Victoria 20-yr licence, 6 Oct 2026</div>
+      <div><span>Date</span><strong>14 October 2026</strong>Version 1.0</div>
+    </div>
+  </header>
+
+  <main class="content">
+
+    <!-- ============ 1 ============ -->
+    <h3><span class="num">1.</span> Executive Summary</h3>
+    <p>This document proposes the design and delivery of an <strong>Adaptive Multi-Agent System (MAS)</strong> for project finance modeling of mining assets with tenure-constrained financing horizons. The framework directly addresses the investment test identified in Daniel van Skye's 14 October 2026 analysis of Avonbank:</p>
+
+    <blockquote>"Investors therefore need one model connecting near-term liquidity, construction funding, debt repayment and long-term equity returns."</blockquote>
+
+    <p>Static deterministic DCF models and conventional spreadsheet-based project finance structures are structurally incapable of solving this problem because they:</p>
+    <ol>
+      <li>Cannot price the <strong>binary risk</strong> of a conditional 20-year licence renewal against a 36-year mine plan.</li>
+      <li>Cannot dynamically reconcile <strong>immediate liquidity drains</strong> (A$3.068M annual qualifying expenditure + A$1M community funding) against construction capex.</li>
+      <li>Cannot adapt to <strong>new regulatory, market, or operational data</strong> without full model rebuilds.</li>
+      <li>Suffer from <strong>circular reference pathologies</strong> when debt sculpting is implemented at institutional scale.</li>
+    </ol>
+    <p>The proposed MAS resolves all four limitations through a modular, auditable, stochastic architecture grounded in verifiable mathematics.</p>
+
+    <!-- ============ 2 ============ -->
+    <h3><span class="num">2.</span> The Investment Challenge: Avonbank as a Canonical Case</h3>
+
+    <h4>2.1 The Tenure Mismatch</h4>
+    <p>On 6 October 2026, Resources Victoria granted WIM Resource an initial <strong>20-year licence</strong> rather than the requested 38 years. The proposed mine life is <strong>36 years</strong> (construction late 2027, full operation 2029). This creates a structural 16-year gap between the financing horizon and the asset life.</p>
+
+    <h4>2.2 Immediate Liquidity Drains</h4>
+    <ul>
+      <li><strong>A$3.068 million/year</strong> mandatory qualifying expenditure on the licensed area from registration.</li>
+      <li><strong>A$1 million over 3 years</strong> community funding (within the A$40M lifetime fund).</li>
+      <li>These are not optional capex — they are regulatory obligations that mechanically reduce CFADS available for debt service in the critical pre-production window.</li>
+    </ul>
+
+    <h4>2.3 Reserve Adjustment</h4>
+    <p>Updated 2025 Ore Reserve: <strong>~284 Mt</strong> (vs. 311.8 Mt in 2018) — an 8.9% reduction (27.8 Mt) following environmental design changes. The investment question is not the loss of value per se, but how the revised inventory changes extraction sequence, mineral assemblage, recoveries, saleable production, and operating costs.</p>
+
+    <h4>2.4 The Core Modeling Requirement</h4>
+    <p>Lenders require proof that <strong>initial-term cash flows</strong> (Years 1–20) support the proposed debt structure. Equity holders require a separate valuation of <strong>renewal-dependent equity value</strong> (Years 21–36). Rehabilitation liabilities must be rescheduled under a non-renewal scenario alongside lost production and delayed collateral release.</p>
+
+    <!-- ============ 3 ============ -->
+    <h3><span class="num">3.</span> Why Traditional Models Fail</h3>
+    <table>
+      <thead>
+        <tr><th style="width:30%">Limitation</th><th style="width:35%">Conventional DCF / Excel</th><th>Proposed MAS</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tenure risk</td><td>Handled as terminal value haircut</td><td>Priced as a Real Call Option with stochastic strike</td></tr>
+        <tr><td>Debt sculpting</td><td>Circular references, solver instability</td><td>Non-circular algorithmic resolution (Bodmer / Pivotal180 method)</td></tr>
+        <tr><td>Data adaptation</td><td>Manual rebuild</td><td>Bayesian updating via ingestion agents</td></tr>
+        <tr><td>Liquidity drain reconciliation</td><td>Mechanical addition</td><td>Dynamic reconciliation against construction schedule</td></tr>
+        <tr><td>Scenario analysis</td><td>Discrete (base / up / down)</td><td>Continuous Monte Carlo with P50/P90/P99 distributions</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ============ 4 ============ -->
+    <h3><span class="num">4.</span> Proposed Solution: Adaptive Multi-Agent System Architecture</h3>
+    <p>The MAS is composed of three cooperating agents orchestrated by a central controller.</p>
+
+    <h4>Agent 1 — The Core VMAR Engine (Mathematical Anchor)</h4>
+    <p>Handles all deterministic and stochastic financial mathematics: cash flow waterfall (revenue → opex → tax → CFADS), non-circular debt sculpting, Real Options pricing for the 16-year extension, and rehabilitation liability scheduling.</p>
+
+    <h4>Agent 2 — The Managerial Thesis Agent (Domain Calibrator)</h4>
+    <p>Ingests Daniel van Skye's published analyses, deal structures, and historical investment theses via NLP. Extracts preferred covenant structures, target IRR hurdles, risk-aversion parameters, and historical coverage-ratio thresholds. The agent dynamically adjusts the model's target variables to align with the fund's specific investment DNA.</p>
+
+    <h4>Agent 3 — The Market &amp; Regulatory Ingestion Agent (External Calibrator)</h4>
+    <p>Continuously scrapes and ingests ASX filings for comparable Victorian mining licenses, regulatory precedents for 20-year licence renewals, macro commodity price feeds (GBM / Schwartz mean-reverting processes), and rehabilitation cost indices. Uses <strong>Bayesian updating</strong> to continuously revise the probability of licence renewal at Year 20, the estimated strike price of the renewal option, and commodity price volatility surfaces.</p>
+
+    <h4>Orchestrator</h4>
+    <p>When Agent 3 detects new data, it triggers Agent 1 to re-run Monte Carlo simulations. Agent 2 ensures the output remains aligned with the fund's thesis. The system outputs updated P50/P90 DSCR distributions, LLCR, and equity IRR distributions in real time.</p>
+
+    <!-- ============ 5 ============ -->
+    <h3><span class="num">5.</span> Mathematical Framework</h3>
+
+    <h4>5.1 Debt Sculpting (Non-Circular)</h4>
+    <p>Sculpted principal in period <em>t</em>:</p>
+    <div class="formula">
+      <span class="lbl">Sculpted Principal</span>
+      Principal<sub>t</sub> = ( CFADS<sub>t</sub> / Target DSCR ) − Interest<sub>t</sub>
+    </div>
+    <p>Where CFADS<sub>t</sub> is computed <strong>without</strong> reference to the debt balance, eliminating circularity.</p>
+
+    <h4>5.2 Loan Life Coverage Ratio (Tenure-Constrained)</h4>
+    <p>For senior debt, the LLCR is computed explicitly over the <strong>20-year licence horizon</strong>, not the 36-year mine life:</p>
+    <div class="formula">
+      <span class="lbl">LLCR (20-Year Horizon)</span>
+      LLCR<sub>20yr</sub> = [ Σ<sub>t=1..20</sub> CFADS<sub>t</sub> / (1 + r)<sup>t</sup> + Closing DSRA ] ÷ Opening Debt Balance
+    </div>
+    <p>This mathematically isolates the debt capacity supported by initial-term operations.</p>
+
+    <h4>5.3 Real Options Valuation for Licence Renewal</h4>
+    <p>Years 21–36 are valued as a <strong>Real Call Option</strong> using Black-Scholes-Merton or Binomial Lattice:</p>
+    <div class="formula">
+      <span class="lbl">Black-Scholes-Merton</span>
+      C = S<sub>0</sub> N(d<sub>1</sub>) − X e<sup>−rT</sup> N(d<sub>2</sub>)
+    </div>
+    <ul>
+      <li><strong>S<sub>0</sub></strong> = PV of expected FCF from Years 21–36</li>
+      <li><strong>X</strong> = Strike price (re-permitting + bonding + regulatory fees at Year 20)</li>
+      <li><strong>σ</strong> = Volatility from stochastic operating-margin simulations</li>
+      <li><strong>T</strong> = 20 years (time to renewal decision)</li>
+    </ul>
+
+    <h4>5.4 Stochastic Commodity Modeling</h4>
+    <p>Revenue is modeled via <strong>Geometric Brownian Motion</strong> or the <strong>Schwartz (1997) mean-reverting process</strong>:</p>
+    <div class="formula">
+      <span class="lbl">Schwartz Mean-Reverting Process</span>
+      dS = κ ( μ − ln S ) S dt + σ S dW
+    </div>
+    <p>Input costs use correlated mean-reverting processes. Monte Carlo simulations (with variance reduction) produce stable P50/P90/P99 distributions for DSCR, LLCR, and equity IRR.</p>
+
+    <h4>5.5 Funding Gap Calculation</h4>
+    <div class="formula">
+      <span class="lbl">Funding Gap</span>
+      Funding Gap = Capex + WC + Σ<sub>t=1..3</sub> Mandatory Expenditure<sub>t</sub> − Committed Equity
+    </div>
+    <p>Stress-tested across 10,000+ Monte Carlo paths to quantify probability of funding shortfall.</p>
+
+    <!-- ============ 6 ============ -->
+    <h3><span class="num">6.</span> VMAR Architecture Principles</h3>
+    <p>All deliverables adhere to strict <strong>Verifiable, Modular, Auditable, Reliable (VMAR)</strong> standards:</p>
+    <ol>
+      <li><strong>Modularity:</strong> Strict separation of the calculation engine (cash flow, debt, tax, option pricing) from the user interface. No circular references.</li>
+      <li><strong>Verifiability:</strong> Every formula is unit-tested against known analytical solutions. Monte Carlo outputs are validated via variance reduction and convergence testing.</li>
+      <li><strong>Auditability:</strong> Full version control, parameter logging, and reproducible seeds for all stochastic runs.</li>
+      <li><strong>Reliability:</strong> Production-grade code (Python / C++), not spreadsheet macros. Designed for institutional deployment.</li>
+    </ol>
+
+    <!-- ============ 7 ============ -->
+    <h3><span class="num">7.</span> Key Scientific &amp; Practitioner References</h3>
+
+    <h4>Real Options in Mining</h4>
+    <ol>
+      <li><strong>"Strategic Integration of Real Options for Enhanced Valuation"</strong> (2024) — Comprehensive review of ROA for mining project planning under uncertainty.</li>
+      <li><strong>"Application of Real Options on the Decision-Making of Mining Investment Projects Using the System Dynamics Method"</strong> (2019) — Integrates static NPV with Black-Scholes real options value.</li>
+      <li><strong>"A Real Option Model to Value an Exploration Mining Project"</strong> (Real Options Conference) — Dynamic model for defer / abandon / expand options.</li>
+      <li><strong>"Real Options Valuation in Gold Mining Projects"</strong> — Factor separation in option calculations under regulatory uncertainty.</li>
+    </ol>
+
+    <h4>Debt Sculpting &amp; Project Finance</h4>
+    <ol start="5">
+      <li><strong>Edward Bodmer, "Project Finance Structuring with Sculpting"</strong> — Industry-standard methodology for resolving circular references in debt sculpting.</li>
+      <li><strong>Pivotal180, "The economy should be circular. Your debt sizing shouldn't."</strong> (2025) — Practitioner guide to non-circular CFADS / DSCR division.</li>
+      <li><strong>"Debt Sculpting vs Debt Sizing in Project Finance"</strong> (Breaking Into Wall Street) — Distinction between sculpting and sizing mechanics.</li>
+      <li><strong>González-Ruiz et al., "Towards an Understanding of Project Finance"</strong> (MDPI Sustainability, 2021) — Academic review of DSCR / LLCR in risk assessment.</li>
+    </ol>
+
+    <h4>Stochastic Modeling</h4>
+    <ol start="9">
+      <li><strong>Schwartz, E.S. (1997), "The Stochastic Behavior of Commodity Prices"</strong> — Mean-reverting process for commodity modeling.</li>
+      <li><strong>Guj et al., "Comparing different real option valuation approaches"</strong> (Resources Policy, 2019) — Methodological comparison for mining applications.</li>
+    </ol>
+
+    <!-- ============ 8 ============ -->
+    <h3><span class="num">8.</span> Engagement Structure &amp; Pricing</h3>
+
+    <div class="cards">
+
+      <div class="card featured">
+        <div class="card-head">
+          <span class="t">Phase 1 — Mathematical Proof-of-Concept &amp; Architecture Blueprint</span>
+          <span class="p">USD 5,000</span>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Deliverable:</strong> 20–30 page institutional-grade document defining the full mathematical framework, MAS architecture, and calibration methodology.</li>
+            <li><strong>Terms:</strong> 50% upfront (USD 2,500) to initiate R&amp;D; 50% upon delivery.</li>
+            <li><strong>Timeline:</strong> 10–14 business days from engagement.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="t">Phase 2 — Production-Grade Stochastic Prototype</span>
+          <span class="p">USD 12,000 – 17,000</span>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Deliverable:</strong> Fully functional Python-based MAS prototype with ingestion pipelines, Monte Carlo engine, and dashboard output.</li>
+            <li><strong>Terms:</strong> 50% upfront to begin development; 50% upon handover and a 30-minute technical deep-dive.</li>
+            <li><strong>Timeline:</strong> 6–8 weeks from Phase 1 completion.</li>
+            <li><em>Final scope and price fixed after Phase 1.</em></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="t">Phase 3 (Optional) — Fund-Specific Calibration &amp; Deployment</span>
+          <span class="p">Scoped separately</span>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>Calibration of Agent 2 (Managerial Thesis) against Daniel's full publication history.</li>
+            <li>Integration with the fund's existing data infrastructure.</li>
+            <li>Ongoing maintenance retainer (scoped separately).</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="terms">
+      <strong>Payment &amp; contracting:</strong> All engagements are contracted to <strong>IP Vladislav Agapov, Kyrgyzstan</strong>. Invoices are issued in <strong>USD</strong>. Phase 1 requires a 50% upfront retainer before work commences; the balance is due on delivery. Bank / wire details provided on the engagement letter.
+    </div>
+
+    <!-- ============ 9 ============ -->
+    <h3><span class="num">9.</span> About the R&amp;D Lead</h3>
+    <p><strong>Vladislav Agapov</strong></p>
+    <ul>
+      <li>PhD, Applied Mathematics</li>
+      <li>30 years of R&amp;D experience in production-grade, high-throughput quantitative systems</li>
+      <li>Specialist in VMAR-compliant architectures for complex stochastic modeling</li>
+      <li>Track record in B2B R&amp;D contracts with clear milestones and upfront engagement terms</li>
+    </ul>
+    <p><strong>Verified profiles:</strong></p>
+    <ul>
+      <li>GitHub — <a href="https://github.com/VladAgapov1969">github.com/VladAgapov1969</a></li>
+      <li>LinkedIn — <a href="https://www.linkedin.com/in/vladislav-agapov-937921385">linkedin.com/in/vladislav-agapov-937921385</a></li>
+      <li>Email — <a href="mailto:vladislav.agapov@gmail.com">vladislav.agapov@gmail.com</a></li>
+    </ul>
+
+    <!-- ============ 10 ============ -->
+    <h3><span class="num">10.</span> Next Steps</h3>
+    <p>I propose a <strong>15-minute technical sync</strong> to:</p>
+    <ol>
+      <li>Validate that the MAS architecture aligns with your fund's quantitative roadmap.</li>
+      <li>Identify the specific data inputs required from WIM Resource (or comparable assets) to calibrate the stochastic variables.</li>
+      <li>Finalize the Phase 1 scope and issue the engagement letter.</li>
+    </ol>
+    <p><strong>Proposed availability:</strong> Thursday or Friday, 15–16 October 2026.</p>
+
+    <!-- ============ SIGNATURE ============ -->
+    <div class="sig">
+      <div class="who">
+        <strong>Vladislav Agapov, PhD</strong>
+        <span>Applied Mathematics · Senior R&amp;D Architect<br>IP Vladislav Agapov · Kyrgyzstan</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/VladAgapov1969">GitHub</a><br>
+        <a href="https://www.linkedin.com/in/vladislav-agapov-937921385">LinkedIn</a><br>
+        <a href="mailto:vladislav.agapov@gmail.com">vladislav.agapov@gmail.com</a>
+      </div>
+    </div>
+
+    <p class="note">Confidential — prepared exclusively for Daniel Alexander van Skye, DBA. © 2026 Vladislav Agapov.</p>
+
+  </main>
+</div>
+</body>
+</html>
